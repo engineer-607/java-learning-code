@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--使用properties配置文件-->
+<!--1.开启context命名空间-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+">
+     <bean id="bookDao" class="com.nanxinda.dao.impl.BookDaoImpl">
+<!--         注入集合-->
+         <property name="array">
+             <array>
+                 <value>100</value>
+                 <value>200</value>
+                 <value>300</value>
+             </array>
+         </property>
+         <property name="list">
+             <list>
+                 <value>itcast</value>
+                 <value>itheima</value>
+                 <value>boxuegu</value>
+             </list>
+         </property>
+         <property name="set">
+             <set>
+                 <value>itcast</value>
+                 <value>nanxinada</value>
+             </set>
+         </property>
+         <property name="map">
+             <map>
+                 <entry key="country" value="Singapore"/>
+                 <entry key="district" value="Singapore"/>
+                 <entry key="city" value="Kuala_Lumper"/>
+             </map>
+         </property>
+         <property name="properties">
+             <props>
+                 <prop key="Singapore"></prop>
+                 <prop key="Singapore"></prop>
+                 <prop key="Kuala_Lumper"></prop>
+             </props>
+         </property>
+     </bean>
+<!--    自动注入需要setter方法，并且按类型必须确保IoC中有相关类型并且对象唯一-->
+    <bean id="bookService" class="com.nanxinda.service.impl.BookServiceImpl" autowire="byType"/>
+<!--    如果遇到容器中有两个类型一样的对象，那就按照名称进行装配（需要确保bean的id和set方法名中去掉开头set并且将首字母小写的结果一致）-->
+<!--    <bean id="bookService" class="com.nanxinda.service.impl.BookServiceImpl" autowire="byName"/>-->
+
+       <!--2.使用context空间加载properties文件-->
+       <!--争对当前案例：<context:property-placeholder location="jdbc.properties"/>-->
+       <!--加载多个properties文件：<context:property-placeholder location="jdbc.properties" system-properties-mode="NEVER"/>-->
+       <!--加载多个properties文件：<context:property-placeholder location="jdbc.properties,mysql.properties"-->
+       <!--加载所有properties文件:-->
+    <context:property-placeholder location="*.properties"/>
+       <!--加载properties文件标准格式：<context:property-placeholder location="classpath*:*.properties"/>-->
+       <!--从类路径或jar包中搜索并加载properties文件：<context:property-placeholder location="classpath*:*.properties"/>-->
+
+
+      <!--连接腾讯云上的数据库-->
+      <!--3.使用属性占位符${}读取properties-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+      <!--MySQL JDBC驱动包（可以理解为翻译官，能够让java理解mysql语言-->
+        <property name="driverClassName" value="${jdbc.driver}"/>
+      <!--url：协议:数据库类型://服务器IP:端口/数据库名-->
+      <!--url后面的参数需要通过&amp;来连接-->
+      <!--useSSL=false是用来关闭SSL加密，serverTimezone=Asia/Shanghai指定时区，避免报The server time zone value 的错误-->
+        <property name="url"
+                  value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+
+</beans>

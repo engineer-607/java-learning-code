@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+">
+    <!--注解开发定义bean-->
+    <!--1.使用@Component定义bean-->
+    <!--2.核心配置文件通过组件加载bean-->
+    <context:component-scan base-package="com.nanxinda"/>
+    <!--spring提供@Component注解的三个衍生注解-->
+    <!--1.@Controller：用于表现层bean定义-->
+    <!--2.@Service：用于业务层bean定义-->
+    <!--3.@Repository：用于数据层bean定义-->
+
+
+
+</beans>

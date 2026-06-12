@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!--
+        CONSOLE ：表示当前的日志信息是可以输出到控制台的。
+    -->
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%level] %blue(%d{HH:mm:ss.SSS}) %cyan([%thread]) %boldGreen(%logger{15}) - %msg %n</pattern>
+        </encoder>
+    </appender>
+21
+    <!--
+        针对特定包的日志级别设置。
+        additivity="false" 表示只用这个logger输出，不再向上转发给root。
+    -->
+    <logger name="org.apache.ibatis" level="DEBUG" additivity="false">
+        <appender-ref ref="Console"/>
+    </logger>
+
+    <logger name="java.sql" level="DEBUG"/>
+
+    <!-- 默认的日志输出级别 -->
+    <root level="INFO">
+        <appender-ref ref="Console"/>
+    </root>
+</configuration>

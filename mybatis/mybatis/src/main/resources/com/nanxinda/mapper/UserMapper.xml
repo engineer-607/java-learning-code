@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace：名称空间-->
+<!--设置SQL映射文件中的namespace属性为Mapper接口全限定名-->
+<mapper namespace="com.nanxinda.mapper.UserMapper">
+<select id="selectAll" resultType="User">
+    seLect * from tb_user;
+</select>
+    <select id="selectById" resultType="User">
+        select * from  tb_brand where id = #{id};
+    </select>
+
+</mapper>

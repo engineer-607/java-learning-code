@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--1.导入spring的坐标，spring-context-->
+    <!--<groupId>org.springframework</groupId>-->
+    <!--<artifactId>spring-context</artifactId>-->
+    <!--<version>5.3.20</version>-->
+    <!--方式一：使用构造方法实例化bean-->
+    <!--2.配置bean-->
+    <!--bean标签表示配置bean-->
+    <!--id属性表示给bean起名字-->
+    <!--class属性表示给bean定义类型-->
+    <!--bean可以定义别名并且可以定义多个，使用逗号(,)分号(;)空格( )进行分隔-->
+    <bean id="bookDao" name="dao bookDaoImpl" class="com.nanxinda.dao.impl.BookDaoImpl"
+    init-method="init" destroy-method="destroy"/>
+<!--可以通过设置scope来决定提供的bean是否为单例，prototype表示对象非单例，而singleton为单例(默认)-->
+    <!--IoC常用来管理那些被反复使用的bean，所以默认为单例-->
+    <!--1.适合交给容器进行管理的bean表现层对象-->
+    <!--2.业务层对象-->
+    <!--3.数据层对象-->
+    <!--4.工具对象-->
+    <!--不适合交给容器进行管理的bean-->
+    <!--1.封装实体的域对象-->
+
+    <bean id="bookService" class="com.nanxinda.service.impl.BookServiceImpl" scope="prototype">
+    <!--6.依赖注入-配置server与dao的关系-->
+    <!--property标签表示配置当前bean的属性，及所依赖的对象（bean）-->
+    <!--name属性表示配置该bean中哪一个具体的属性,该name可以用所依赖bean的id或者name-->
+    <!--ref属性表示需要注入的bean，及当前bean所依赖的bean-->
+<!--        引用类型注入用ref-->
+        <property name="bookDao" ref="bookDao"/>
+<!--        基本数据类型注入用value（String类型也可以使用-->
+        <property name="dataBaseName" value="mysql"/>
+        <property name="connectionNum" value="10"/>
+<!--        构造器注入引用数据类型，引用数据类型（但是使用name耦合度较高）-->
+        <constructor-arg name="bookDao" ref="bookDao"/>
+        <constructor-arg name="dataBaseName" value="mysql"/>
+        <constructor-arg name="connectionNum" value="10"/>
+<!--        用类型来解决形参耦合问题-->
+<!--        <constructor-arg value="10" type="java.lang.Integer"/>-->
+<!--        用索引的方式来解决参数类型重复问题-->
+<!--         <constructor-arg index="1" value="10"/>-->
+
+    </bean>
+    <!--方式二：使用静态工厂实例化bean-->
+    <!--factory-method属性表示需要用到的方法-真正创建方法的对象-->
+    <bean id="orderDao" class="com.nanxinda.factory.OrderDaoFactory" factory-method="getOrderDao"/>
+    <!--方式三：使用实例化工厂创建bean-->
+    <!--先将工厂实例对象创建出来，再利用这个对象创建所需的bean-->
+    <!--这个对象没有实际意义，只是为了使用来分配-->
+<!--    <bean id="userFactory" class="com.nanxinda.factory.UserDaoFactory"/>-->
+<!--    <bean id="userDao" factory-method="getUserDao" factory-bean="userFactory"/>-->
+    <!--方式三的改良-->
+    <bean id="userDao" class="com.nanxinda.factory.UserDaoFactoryBean" />
+
+
+</beans>

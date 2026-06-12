@@ -1,0 +1,10 @@
+server:
+  port: 80
+#SpringBoot中4级配置文件
+#1级： file :config/application.yml  【最高】
+#2级： file :application.yml
+#3级： classpath：config/application.yml
+#4级： classpath：application.yml    【最低】
+#作用：
+# 1级与2级留做系统打包后设置通用属性
+# 3级与4级用于系统开发阶段设置通用属性

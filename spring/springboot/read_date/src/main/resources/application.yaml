@@ -1,0 +1,41 @@
+#设置启用的环境
+spring:
+  profiles:
+    active: dev
+---
+#生产
+spring:
+  config:
+    activate:
+      on-profile: pro
+
+lesson: SpringBoot
+
+server:
+  port: 82
+enterprise:
+  name: itcast
+  age: 16
+  tel: 18114636782
+  subject:
+    - Java
+    - agent
+    - 运维
+    - 监控
+
+---
+#开发
+spring:
+  config:
+    activate:
+      on-profile: dev
+server:
+  port: 81
+---
+#测试
+spring:
+  config:
+    activate:
+      on-profile: test
+server:
+  port: 83
