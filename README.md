@@ -2,7 +2,7 @@
 
 ## 项目简介
 
-这是我的 Java 后端学习代码仓库，记录了从 Java 基础、数据结构与算法、MySQL、JDBC、MyBatis，到 Spring、Spring MVC、Spring Boot 和 MyBatis-Plus 的学习过程。
+这是我的 Java 后端学习代码仓库，记录了从 Java 基础、数据结构与算法、MySQL、JDBC、MyBatis、Redis，到 Spring、Spring MVC、Spring Boot 和 MyBatis-Plus 的学习过程。
 
 仓库中的代码按学习阶段保留，既用于回顾自己的成长过程，也希望能给其他 Java 初学者提供一条可参考的学习路线。部分目录沿用了学习时的命名，例如 `OPP2.0`、`alorithm`，目前不做大规模重命名。
 
@@ -19,6 +19,8 @@ JDBC
     ↓
 MyBatis
     ↓
+Redis
+    ↓
 Spring / Spring Boot
 ```
 
@@ -31,7 +33,7 @@ Spring / Spring Boot
 
 ## 目录结构与学习内容
 
-以下说明基于仓库当前真实目录和源码内容整理。Java 基础与算法部分按包概括，MySQL 部分按类概括，JDBC、MyBatis 和 Spring 部分按外层项目概括。
+以下说明基于仓库当前真实目录和源码内容整理。Java 基础与算法部分以 `com.nanxinda` 下的包为最小概括单元，MySQL 和 Redis 部分按类概括，JDBC、MyBatis 和 Spring 部分按外层项目概括。
 
 ### Java 基础
 
@@ -264,6 +266,22 @@ mybatis/
         品牌数据 CRUD、批量删除、自增主键回填和事务提交
 ```
 
+### Redis
+
+```text
+redis/
+├── redie_knowledge/
+│   └── src/Main.java：
+│       Redis 键值数据库基础，String、Hash、List、Set、SortedSet 五种基本数据结构，
+│       GEO、BitMap、HyperLogLog 特殊数据类型，常用命令、Key 命名结构及典型应用场景
+│
+└── redis_quickstart/
+    ├── pom.xml：引入 Jedis、JUnit 4 和 JUnit 5，建立 Redis Java 客户端练习工程
+    └── src/test/java/org/example/JedisTest.java：
+        使用 Jedis 连接 Redis、密码认证、选择数据库、关闭连接，
+        练习 String 的 SET/GET 和 Hash 的 HSET/HGETALL 操作
+```
+
 ### Spring、Spring MVC 与 Spring Boot
 
 ```text
@@ -347,6 +365,8 @@ Java 基础：`BV1fh411y7R8`
 JDBC：`BV1s3411K7jH`
 
 MyBatis：`BV1MT4y1k7wZ`
+
+Redis：`BV1cr4y1671t`
 
 Spring Boot：`BV1Fi4y1S7ix`
 
