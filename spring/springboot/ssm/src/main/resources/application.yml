@@ -1,0 +1,12 @@
+#NOTE 配置数据源的必要信息
+server:
+  port: 80
+
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/itcast?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: ubuntu
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource

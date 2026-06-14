@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/itcast?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: ubuntu
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+  main:
+    banner-mode: off
+#NOTE 开启日志
+#NOTE banner: false/banner-mode: off 关闭测试执行开头的spring标
+#NOTE id-type：可以全局设置id生成策略
+#NOTE table-prefix:可以全局在所有实体类对应的小写加前缀来达到统一映射数据库表名的效果
+
+#NOTE 逻辑删除的全局配置
+#NOTE logic-delete-field: deleted（删除属性）
+#NOTE logic-delete-value: 1（删除值）
+#NOTE logic-not-delete-value: 0（默认值）
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    banner: false
+    db-config:
+      id-type: auto
+      table-prefix: tb_stu_
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0

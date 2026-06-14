@@ -62,28 +62,3 @@ $RECYCLE.BIN/
 *.avi
 *.mov
 *.wmv
-
-# Files containing database endpoints or credentials.
-# Keep the local originals private; commit sanitized example files instead.
-/Java基础/基础/IO/src/mysql.properties
-/Java基础/基础/IO/src/mysql2.properties
-/jdbc/jdbc_quickstart/src/druid.properties
-/jdbc/jdbc_quickstart/src/main/java/com/nanxinda/jdbc/JDBCDemo.java
-/jdbc/jdbc_quickstart/src/main/java/com/nanxinda/jdbc/api/Login_SQL_Inject.java
-/jdbc/jdbc_quickstart/src/main/java/com/nanxinda/jdbc/api/PrepareStatementDetail.java
-/jdbc/jdbc_quickstart/src/main/java/com/nanxinda/jdbc/api/ResultSetDetail.java
-/jdbc/jdbc_quickstart/src/main/java/com/nanxinda/jdbc/api/StatementDetail.java
-/mybatis/mybatis/src/main/resources/mybatis-config.xml
-/spring/mybatisplus/generator/src/main/java/com/nanxinda/Generator.java
-/spring/mybatisplus/quickstart/src/main/resources/application.yml
-/spring/spring_annotation/src/main/java/com/nanxinda/config/JdbcConfig.java
-/spring/spring_autowire/src/main/resources/jdbc.properties
-/spring/spring_mybatis/src/main/resources/jdbc.properties
-/spring/spring_transaction/src/main/resources/jdbc.properties
-/spring/springboot/mybatis/src/main/resources/application.yml
-/spring/springboot/ssm/src/main/resources/application.yml
-/spring/springssm/src/main/resources/jdbc.properties
-
-# Files exposing local network or machine details.
-/Java基础/基础/net/src/com/nanxinda/UDP/UDPsenderB.java
-/Java基础/基础/net/src/com/nanxinda/net/InetAddressCase.java

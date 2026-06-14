@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 开启驼峰命名自动映射 -->
+    <settings>
+<!--下划线转驼峰配置,能够将查询结果对应的字段匹配到对应的封装类中的属性，比如字段company_name匹配Brand类中的companyName-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!-- 打印 SQL 日志到控制台 -->
+        <setting name="logImpl" value="SLF4J"/>
+    </settings>
+
+<!--别名可以简化UserMapper.xml对返回类型resultType的配置，直接使用包名User或者user-->
+    <typeAliases>
+        <package name="com.nanxinda.pogo"/>
+    </typeAliases>
+
+<!--environments:配置数据库连接环境信息，可以配置多个environment，通过default属性切换不同-->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://127.0.0.1:3306/itcast?useServerPrepStmts=true&amp;serverTimezone=UTC"/>
+                <property name="username" value="ubuntu"/>
+                <property name="password" value="123456"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <!-- 注册 Mapper 映射文件 -->
+         <mapper resource="com/nanxinda/mapper/UserMapper.xml"/>
+        <mapper resource="com/nanxinda/mapper/BrandMapper.xml"/>
+    </mappers>
+</configuration>
