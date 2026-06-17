@@ -1,5 +1,6 @@
 package org.example;
 
+import com.nanxinda.jedis.util.JedisConnectionFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +13,7 @@ class JedisTest {
     @BeforeEach
     void setUp(){
         //NOTE 2.连接本地6380，但是实际上会通过SSH隧道连接到服务器Redis
-        jedis = new Jedis("127.0.0.1",6380);
+        jedis = JedisConnectionFactory.getJedis();
         jedis.auth("123321");
         jedis.select(0);
     }

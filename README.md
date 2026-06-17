@@ -33,7 +33,7 @@ Spring / Spring Boot
 
 ## 目录结构与学习内容
 
-以下说明基于仓库当前真实目录和源码内容整理。Java 基础与算法部分以 `com.nanxinda` 下的包为最小概括单元，MySQL 和 Redis 部分按类概括，JDBC、MyBatis 和 Spring 部分按外层项目概括。
+以下说明基于仓库当前真实目录和源码内容整理。Java 基础与数据结构算法部分以包为最小概括单元，MySQL 部分按类概括，Redis、JDBC、MyBatis 和 Spring 部分按外层项目概括。
 
 ### Java 基础
 
@@ -214,7 +214,7 @@ Java基础/
         │
         └── zuochengyun/alorithm/
             ├── arithmetic_skill：位运算、异或题、位图/BitSet、二进制四则运算和常见位技巧
-            ├── datadesign：SnapshotArray 的 set、snap、get 及历史版本查询
+            ├── datadesign：随机集合、快照数组、LRU 缓存等数据结构设计题
             ├── heapcommonproblems：堆排序、合并 K 个有序链表、数组和减半、生存人数最多年份
             ├── linkedlist：链表相交、K 组翻转、随机指针复制、回文、入环点和归并排序
             └── merge：使用归并过程统计交易逆序对和重要翻转对
@@ -275,11 +275,15 @@ redis/
 │       Redis 键值数据库基础，String、Hash、List、Set、SortedSet 五种基本数据结构，
 │       GEO、BitMap、HyperLogLog 特殊数据类型，常用命令、Key 命名结构及典型应用场景
 │
-└── redis_quickstart/
-    ├── pom.xml：引入 Jedis、JUnit 4 和 JUnit 5，建立 Redis Java 客户端练习工程
-    └── src/test/java/org/example/JedisTest.java：
-        使用 Jedis 连接 Redis、密码认证、选择数据库、关闭连接，
-        练习 String 的 SET/GET 和 Hash 的 HSET/HGETALL 操作
+├── redis_quickstart/
+│   └── Jedis 客户端入门项目：
+│       使用 Jedis 连接池访问 Redis，练习连接配置、认证、String 和 Hash 基础操作；
+│       test 目录中保留了对应练习代码和学习笔记
+│
+└── redistemplate/
+    └── Spring Data Redis 练习项目：
+        使用 Spring Boot、RedisTemplate 和 StringRedisTemplate 操作 Redis，
+        重点练习连接配置、序列化方式、对象缓存和 Hash 字段存取
 ```
 
 ### Spring、Spring MVC 与 Spring Boot
