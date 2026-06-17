@@ -33,8 +33,6 @@ Spring / Spring Boot
 
 ## 目录结构与学习内容
 
-以下说明基于仓库当前真实目录和源码内容整理。Java 基础与算法部分以 `com.nanxinda` 下的包为最小概括单元，MySQL 和 Redis 部分按类概括，JDBC、MyBatis 和 Spring 部分按外层项目概括。
-
 ### Java 基础
 
 ```text
