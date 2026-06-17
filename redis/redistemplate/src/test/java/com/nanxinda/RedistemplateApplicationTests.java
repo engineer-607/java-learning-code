@@ -80,7 +80,7 @@ class RedistemplateApplicationTests {
     void testHash(){
         stringRedisTemplate.opsForHash().put("nanxinda:user:3","name","李四");
         stringRedisTemplate.opsForHash().put("nanxinda:user:3","age","18");
-        Map<Object,Object> entries =redisTemplate.opsForHash().entries("nanxinda:user:2");
+        Map<Object,Object> entries =stringRedisTemplate.opsForHash().entries("nanxinda:user:3");
         System.out.println(entries);
 
 
