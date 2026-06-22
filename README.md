@@ -209,13 +209,15 @@ Java基础/
         │
         └── zuochengyun/alorithm/
             ├── arithmetic_skill：位运算、异或题、位图/BitSet、二进制四则运算和常见位技巧
-            ├── datadesign：随机集合、快照数组、LRU 缓存等数据结构设计题
+            ├── datadesign：随机集合、快照数组、LRU 缓存、AllOne、数据流中位数、最大频率栈等数据结构设计题
             ├── heapcommonproblems：堆排序、合并 K 个有序链表、数组和减半、生存人数最多年份
             ├── linkedlist：链表相交、K 组翻转、随机指针复制、回文、入环点和归并排序
             └── merge：使用归并过程统计交易逆序对和重要翻转对
 ```
 
 `nanxinda` 相关目录主要是算法基础训练，`zuochengyun` 相关目录主要是左程云算法进阶训练。
+
+左程云算法进阶部分按包名汇总，汇总前先扫描该包下的练习类，再归纳为包级主题。`datadesign` 目录当前覆盖随机集合、允许重复的随机集合、快照数组、LRU 缓存、AllOne 数据结构、数据流中位数和最大频率栈等设计题。
 
 ### MySQL
 
@@ -269,6 +271,11 @@ redis/
 │   └── src/Main.java：
 │       Redis 键值数据库基础，String、Hash、List、Set、SortedSet 五种基本数据结构，
 │       GEO、BitMap、HyperLogLog 特殊数据类型，常用命令、Key 命名结构及典型应用场景
+│
+├── redis_exercise_implement/
+│   └── Redis 登录练习实现项目：
+│       前后端代码统一保存在 Redis 学习目录中，当前实现了验证码发送、手机号/邮箱登录、
+│       登录用户信息查询、登录拦截、用户信息保存和 Redis 验证码校验等功能
 │
 ├── redis_quickstart/
 │   └── Jedis 客户端入门项目：
@@ -330,6 +337,14 @@ spring/
     ├── mybatis：Spring Boot 整合 MyBatis，使用注解 Mapper 查询图书
     └── ssm：Spring Boot 整合表现层、业务层和 MyBatis，完成图书 CRUD、
         统一结果封装、业务/系统异常处理，并配有 Vue 页面
+```
+
+### Resources
+
+```text
+resources/
+└── nginx-1.18.0-linux/
+    └── Linux 环境下的 nginx 1.18.0 资源目录，保留 conf、html 和 sbin/nginx 等运行相关文件
 ```
 
 ## 关于 JDBC
