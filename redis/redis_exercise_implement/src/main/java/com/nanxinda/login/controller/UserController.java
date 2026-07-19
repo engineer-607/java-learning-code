@@ -1,19 +1,18 @@
 package com.nanxinda.login.controller;
 
 import com.nanxinda.login.dto.LoginFormDTO;
-import com.nanxinda.login.dto.Result;
+import com.nanxinda.system.dto.Result;
 import com.nanxinda.login.dto.SendDTO;
 import com.nanxinda.login.dto.UserDTO;
 import com.nanxinda.login.service.UserService;
 import com.nanxinda.login.utils.UserHolder;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 //NOTE Session&Cookie:
 // cookie:浏览器保存的一小部分数据、Session是保存的服务器的一份用户会话数据
 // 浏览器第一次访问服务器
 //         ↓
-// 服务器创建一个 Session，例如 id = abc123
+// 服务器创建一个 Session，例如 shopId = abc123
 //         ↓
 // 服务器把 Session 数据保存在自己内存里
 //         ↓

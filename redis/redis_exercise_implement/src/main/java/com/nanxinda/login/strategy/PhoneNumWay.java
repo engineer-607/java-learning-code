@@ -2,7 +2,7 @@ package com.nanxinda.login.strategy;
 
 import cn.hutool.core.util.RandomUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.nanxinda.login.dto.Result;
+import com.nanxinda.system.dto.Result;
 import com.nanxinda.login.entity.User;
 import com.nanxinda.login.strategy.abstractStrategy.LoginStrategy;
 import com.nanxinda.login.utils.RegexUtils;

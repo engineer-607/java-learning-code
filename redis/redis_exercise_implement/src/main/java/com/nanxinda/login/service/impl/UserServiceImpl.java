@@ -1,11 +1,10 @@
 package com.nanxinda.login.service.impl;
 
 import com.nanxinda.login.dto.LoginFormDTO;
-import com.nanxinda.login.dto.Result;
+import com.nanxinda.system.dto.Result;
 import com.nanxinda.login.service.UserService;
 import com.nanxinda.login.strategy.abstractStrategy.LoginStrategy;
 import com.nanxinda.login.strategy.abstractStrategy.SenderCodeStrategy;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;

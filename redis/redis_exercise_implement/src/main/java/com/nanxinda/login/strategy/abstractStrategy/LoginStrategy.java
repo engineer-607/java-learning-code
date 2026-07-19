@@ -3,11 +3,10 @@ package com.nanxinda.login.strategy.abstractStrategy;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
-import com.nanxinda.login.dto.Result;
+import com.nanxinda.system.dto.Result;
 import com.nanxinda.login.dto.UserDTO;
 import com.nanxinda.login.entity.User;
 import com.nanxinda.login.mapper.UserMapper;
-import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -17,7 +16,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-import static com.nanxinda.login.utils.RedisConstants.*;
+import static com.nanxinda.system.utils.RedisConstants.*;
 
 //流程
 //用户输入手机号和验证码

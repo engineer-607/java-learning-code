@@ -1,4 +1,4 @@
-package com.nanxinda.login.dto;
+package com.nanxinda.system.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

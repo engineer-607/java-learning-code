@@ -1,15 +1,15 @@
 package com.nanxinda.login.strategy.abstractStrategy;
 
 import cn.hutool.core.util.RandomUtil;
-import com.nanxinda.login.dto.Result;
+import com.nanxinda.system.dto.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
 import java.util.concurrent.TimeUnit;
 
-import static com.nanxinda.login.utils.RedisConstants.LOGIN_CODE_KEY;
-import static com.nanxinda.login.utils.RedisConstants.LOGIN_CODE_TTL;
+import static com.nanxinda.system.utils.RedisConstants.LOGIN_CODE_KEY;
+import static com.nanxinda.system.utils.RedisConstants.LOGIN_CODE_TTL;
 
 //NOTE 策略模式分类方式应该根据是否有相同的输入、相同的动作、相同的返回结果、相同的业务阶段
 // 来划分，而不是盲目地将同一业务阶段的不同策略全都塞到同一策略里

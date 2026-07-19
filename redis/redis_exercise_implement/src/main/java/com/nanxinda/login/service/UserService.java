@@ -1,8 +1,7 @@
 package com.nanxinda.login.service;
 
 import com.nanxinda.login.dto.LoginFormDTO;
-import com.nanxinda.login.dto.Result;
-import jakarta.servlet.http.HttpSession;
+import com.nanxinda.system.dto.Result;
 
 public interface UserService {
 
