@@ -4,7 +4,7 @@
 
 这是我的 Java 后端学习代码仓库，记录了从 Java 基础、数据结构与算法、MySQL、JDBC、MyBatis、Redis，到 Spring、Spring MVC、Spring Boot 和 MyBatis-Plus 的学习过程。
 
-仓库中的代码按学习阶段保留，既用于回顾自己的成长过程，也希望能给其他 Java 初学者提供一条可参考的学习路线。部分目录沿用了学习时的命名，例如 `OPP2.0`、`alorithm`，目前不做大规模重命名。
+仓库中的代码按学习阶段保留，既用于回顾自己的成长过程，也希望能给其他 Java 初学者提供一条可参考的学习路线。
 
 ## 学习路线总览
 
@@ -19,12 +19,12 @@ JDBC
     ↓
 MyBatis
     ↓
-Redis
+Spring/Spring Boot
     ↓
-Spring / Spring Boot
+redis
 ```
 
-在 MyBatis、Spring 学习阶段，我也并行进行了数据结构与算法进阶训练。
+在 MyBatis、Spring 学习阶段，我并行进行了数据结构与算法进阶训练。
 
 算法代码的对应关系：
 
