@@ -1,6 +1,6 @@
 package com.zuochengyun.alorithm.binarytree;
 @SuppressWarnings({"all"})
-public class NearestCommonAncestor {
+public class BinaryTreeNearestCommonAncestor {
     //对于有根树 T 的两个结点 p、q，
     //最近公共祖先表示为一个结点 x,
     //满足 x 是 p、q 的祖先且 x 的深度尽可能大

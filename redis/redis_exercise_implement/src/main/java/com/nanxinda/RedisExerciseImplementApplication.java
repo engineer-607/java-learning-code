@@ -2,8 +2,11 @@ package com.nanxinda;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @SpringBootApplication
+@EnableAspectJAutoProxy(exposeProxy = true)
+//NOTE 需要开启允许暴露代理对象的配置
 public class RedisExerciseImplementApplication {
 
     public static void main(String[] args) {

@@ -3,7 +3,7 @@ package com.nanxinda.shop.service.impl;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
-import com.baomidou.mybatisplus.extension.repository.AbstractRepository;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.nanxinda.shop.entity.Shop;
 import com.nanxinda.shop.mapper.ShopMapper;
@@ -12,20 +12,27 @@ import com.nanxinda.system.dto.RedisData;
 import com.nanxinda.system.dto.Result;
 import com.nanxinda.system.utils.CacheClient;
 import com.nanxinda.system.utils.RedisConstants;
-import lombok.Data;
-import lombok.experimental.Accessors;
+import com.nanxinda.system.utils.SystemConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.geo.Distance;
+import org.springframework.data.geo.GeoResult;
+import org.springframework.data.geo.GeoResults;
+import org.springframework.data.redis.connection.RedisGeoCommands;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.domain.geo.GeoReference;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.swing.text.html.parser.Entity;
 import java.time.LocalDateTime;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import static com.nanxinda.system.utils.RedisConstants.*;
+import static com.nanxinda.system.utils.SystemConstants.DEFAULT_PAGE_SIZE;
 
 @Slf4j
 @Service
@@ -53,6 +60,66 @@ public class ShopServiceImpl extends ServiceImpl<ShopMapper, Shop> implements Sh
         }
         return Result.ok(shop);
     }
+
+    @Override
+    public Result queryByType(Integer typeId, Integer current, Double x, Double y) {
+        //1.判断是否需要坐标查询
+        if(x==null||y == null){
+            //不需要坐标，直接数据库查询
+            Page<Shop> page = lambdaQuery()
+                    .eq(Shop::getTypeId,typeId)
+                    .page(new Page<>(current, DEFAULT_PAGE_SIZE));
+            //NOTE lambdaQuery()返回的LambdaQueryChainWrapper<Shop>的的 eq() 可以近似理解为：
+            // eq(SFunction<Shop, ?> column, Object value) 所以Shop::getTypeId从语法角度是真正的方法引用
+            // 也会被转为函数式接口，但是Mybatis-Plus通常不会去真的执行shop.getTypeId(),而是利用这个 Lambda 对象，
+            // 解析出它引用的方法名称获取数据库字段type_id
+            return Result.ok(page.getRecords());
+        }
+        //2.计算分页参数
+        int from = (current - 1)*DEFAULT_PAGE_SIZE;
+        int end = current*DEFAULT_PAGE_SIZE;
+
+        //3.从Redis GEO中查询：指定类型的店铺、用户5公里以内、最多查询前end条、同时返回距离;
+        String key = SHOP_GEO_KEY + typeId;
+        GeoResults<RedisGeoCommands.GeoLocation<String>> results = redisTemplate.opsForGeo().search(
+                key,
+                GeoReference.fromCoordinate(x, y),
+                new Distance(5000),
+                RedisGeoCommands.GeoSearchCommandArgs.newGeoSearchArgs().includeDistance().limit(end)
+        );
+        //4.解析id
+        if(results==null){
+            return Result.ok(Collections.emptyList());
+        }
+        List<GeoResult<RedisGeoCommands.GeoLocation<String>>> content = results.getContent();
+        if(content.size()<=from){
+            //如果没有下一页，直接返回
+            return Result.ok(Collections.emptyList());
+        }
+        List<Long> ids = new ArrayList<>(content.size());
+        HashMap<String,Distance> hashMap = new HashMap<>(content.size());
+        //跳过前from条，得到当前页；
+        //提取：店铺ID列表、店铺ID和距离的Map;
+        content.stream().skip(from).forEach(
+                result ->{
+                    String id = result.getContent().getName();
+                    ids.add(Long.valueOf(id));
+                    Distance distance = result.getDistance();
+                    hashMap.put(id,distance);
+                }
+        );
+        //根据ID列表从MySQL查询完整店铺、按照Redis中的ID顺序排序;
+        String idStr = StrUtil.join(",",ids);
+        List<Shop> list = lambdaQuery().in(Shop::getId, ids).last("order by field(id," + idStr + ")")
+                .list();
+        //把距离设置到每个Shop对象中;
+        for (Shop shop : list) {
+            shop.setDistance(hashMap.get(shop.getId().toString()).getValue());
+        }
+        return Result.ok(list);
+
+    }
+
     private boolean isHotShop(Long id){
         Boolean isMember = redisTemplate.opsForSet().isMember(CACHE_HOT_SHOP_IDS,String.valueOf(id));
         return BooleanUtil.isTrue(isMember);
@@ -227,6 +294,7 @@ public class ShopServiceImpl extends ServiceImpl<ShopMapper, Shop> implements Sh
     // 可能瞬间需要创建大量线程，线程太多导致CPU需要频繁上下文切换，甚至内存耗尽
     // 3.不好管理任务：线程池可以控制核心线程数、最大线程数、队列长度、拒绝策略
     // 4.异常和生命周期不好处理：自定义线程异常容易丢失，也不好统一监控和关闭线程
+
 
 }
 //NOTE
